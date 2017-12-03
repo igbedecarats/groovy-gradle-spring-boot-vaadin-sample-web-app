@@ -42,13 +42,13 @@ compileGroovy {
 
 jar {
     baseName = 'app'
-    version = null // no version in the filename
+    version = null
     manifest {
-        attributes 'Main-Class': mainClassName // Allow to run with `java -jar app.jar`
+        attributes 'Main-Class': mainClassName
     }
 }
 
-bootRun.systemProperties = System.properties // pass sysprops down to bootRun, so we can add them in configs in intellij
+bootRun.systemProperties = System.properties
 
 vaadin {
 	vaadin.version = vaadinVersion
@@ -68,10 +68,22 @@ project.codenarc {
 dependencies {
     compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
     compile 'org.springframework.boot:spring-boot-starter-web'
-    // always exclude com.vaadin packages from deps
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-jersey')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-devtools')
+    compile('com.google.maps:google-maps-services:0.1.20')
     compile("com.vaadin:vaadin-spring-boot-starter:${vaadinSpringVersion}")
+    compile('org.vaadin.spring.extensions:vaadin-spring-ext-core:2.0.0.RELEASE')
+    compile('org.vaadin.spring.extensions:vaadin-spring-ext-security:2.0.0.RELEASE')
+    compile('org.vaadin.spring.addons:vaadin-spring-addon-eventbus:2.0.0.RELEASE')
+    compile('org.vaadin.spring.addons:vaadin-spring-addon-sidebar:2.0.0.RELEASE')
+    compile('com.vaadin:vaadin-bom:8.0.5')
+    compile('com.vaadin:vaadin-themes:8.0.5')
+    compile('com.vaadin:vaadin-push:8.0.5')
+    compile('com.vaadin:vaadin-client-compiled:8.0.5')
+    compile('com.vaadin:vaadin-icons:3.0.1')
     compile("org.vaadin:viritin:${viritinVersion}") { exclude group: 'com.vaadin' }
+    runtime('com.h2database:h2')
     testCompile "org.spockframework:spock-core:${spockVersion}"
-    // vaadin addons are put automatically into the widgetset 
-    // compile('org.vaadin.addons:ckeditor-wrapper-for-vaadin:7.9.3') { exclude group:'com.vaadin' }
 }
