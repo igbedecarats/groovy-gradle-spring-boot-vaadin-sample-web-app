@@ -8,3 +8,4 @@
 /.nb-gradle-properties
 /.nb-gradle/
 /src/main/resources/app.gwt.xml
+/logs/

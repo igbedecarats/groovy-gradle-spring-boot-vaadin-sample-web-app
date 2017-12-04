@@ -1,0 +1,80 @@
+-- Locations
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(1, 'GBA_SUR', '-34.7206336', '-58.2546051', 'Quilmes');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(2, 'GBA_SUR', '-34.7108688', '-58.2800827', 'Bernal');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(3, 'GBA_SUR', '-34.748497', '-58.238205', 'Ezpeleta');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(4, 'GBA_SUR', '-34.6610756', '-58.3669739', 'Avellaneda');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(5, 'GBA_SUR', '-34.7678337', '-58.3792534', 'Temperley');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(6, 'GBA_SUR', '-34.7030869', '-58.2974319', 'Don Bosco');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(7, 'GBA_SUR', '-34.695385', '-58.3320999', 'Villa Dominico');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(8, 'GBA_SUR', '-34.6539459', '-58.3489914', 'Dock Sud');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(9, 'GBA_NORTE', '-34.425087', '-58.5796585', 'Tigre');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(10, 'GBA_NORTE', '-35.0241698', '-58.4237574', 'San Vicente');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(11, 'GBA_NORTE', '-34.470829', '-58.5286102', 'San Isidro');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(12, 'GBA_SUR', '-34.7611823', '-58.4302476', 'Lomas de Zamora');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(13, 'GBA_SUR', '-34.6994795', '-58.3920795', 'Lanus');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(14, 'GBA_SUR', '-34.4938049', '-58.6272715', 'Don Torcuato');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(15, 'GBA_OESTE', '-34.6685004', '-58.7282483', 'Merlo');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(16, 'GBA_OESTE', '-34.6340099', '-58.791382', 'Moreno');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(17, 'GBA_NORTE', '-34.5281205', '-58.473816', 'Vicente Lopez');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(18, 'GBA_NORTE', '-34.47509', '-58.753746', 'Tortuguitas');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(19, 'GBA_SUR', '-34.7900852', '-58.1548511', 'Hudson');
+INSERT INTO location
+(id, AREA, LATITUDE, LONGITUDE, NAME)
+VALUES(20, 'GBA_SUR', '-34.762001', '-58.2112961', 'Berazategui');
+
+-- Users
+INSERT INTO user (id, username, password, email, first_name, last_name, preferred_location_id, role)
+VALUES (1, 'johnsmith', 'x28', 'john.smith@gmail.com', 'John', 'Smith', 1, 'ADMIN');
+
+INSERT INTO user (id, username, password, email, first_name, last_name, preferred_location_id, role)
+VALUES (2, 'johnsnow', 'js', 'john.snow@gmail.com', 'John', 'Snow', 2, 'PROVIDER');
+
+INSERT INTO user (id, username, password, email, first_name, last_name, preferred_location_id, role)
+VALUES (3, 'jamesbond', 'jb', 'james.bond@gmail.com', 'James', 'Bond', 2, 'CLIENT');
+
+INSERT INTO user (id, username, password, email, first_name, last_name, preferred_location_id, role)
+VALUES (4, 'ironman', 'ironman', 'tony.stark@avengers.com', 'Tony', 'Stark', 7, 'PROVIDER');
+
+INSERT INTO user (id, username, password, email, first_name, last_name, preferred_location_id, role)
+VALUES (5, 'hulk', 'hulk', 'bruce.bannerk@avengers.com', 'Bruce', 'Banner', 16, 'PROVIDER');
+
+INSERT INTO user (id, username, password, email, first_name, last_name, preferred_location_id, role)
+VALUES (6, 'archers', 'archers', 'archer.sterling@isis.com', 'Archer', 'Stirling', 16, 'PROVIDER');

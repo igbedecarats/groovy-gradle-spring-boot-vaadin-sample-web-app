@@ -13,7 +13,7 @@ ext {
     ext {
         groovyVersion = '2.4.12'
         gradleWrapperVersion = '4.2.1'
-        vaadinVersion = '8.1.5'
+        vaadinVersion = '8.0.5'
         vaadinSpringVersion = '2.0.1'
         viritinVersion = '1.61'
         codenarcVersion = '0.27.0'
@@ -71,13 +71,14 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-jersey')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-devtools')
     compile('com.google.maps:google-maps-services:0.1.20')
     compile("com.vaadin:vaadin-spring-boot-starter:${vaadinSpringVersion}")
-    compile('org.vaadin.spring.extensions:vaadin-spring-ext-core:2.0.0.RELEASE')
-    compile('org.vaadin.spring.extensions:vaadin-spring-ext-security:2.0.0.RELEASE')
-    compile('org.vaadin.spring.addons:vaadin-spring-addon-eventbus:2.0.0.RELEASE')
-    compile('org.vaadin.spring.addons:vaadin-spring-addon-sidebar:2.0.0.RELEASE')
+    compile('org.vaadin.spring.extensions:vaadin-spring-ext-core:2.0.1-SNAPSHOT')
+    compile('org.vaadin.spring.extensions:vaadin-spring-ext-security:2.0.1-SNAPSHOT')
+    compile('org.vaadin.spring.addons:vaadin-spring-addon-eventbus:2.0.1-SNAPSHOT')
+    compile('org.vaadin.spring.addons:vaadin-spring-addon-sidebar:2.0.1-SNAPSHOT')
     compile('com.vaadin:vaadin-bom:8.0.5')
     compile('com.vaadin:vaadin-themes:8.0.5')
     compile('com.vaadin:vaadin-push:8.0.5')
