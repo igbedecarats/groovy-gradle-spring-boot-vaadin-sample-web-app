@@ -12,8 +12,11 @@ class SecurityConfiguration implements AuthenticationManagerConfigurer {
     @Autowired
     private UserRepository userRepository
 
+    @Autowired
+    private UserHolder userHolder
+
     @Override
     void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(new UserAuthenticationProvider(userRepository))
+        auth.authenticationProvider(new UserAuthenticationProvider(userRepository, userHolder))
     }
 }

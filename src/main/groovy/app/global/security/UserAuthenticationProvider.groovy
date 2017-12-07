@@ -13,8 +13,11 @@ class UserAuthenticationProvider implements AuthenticationProvider {
 
     private UserRepository userRepository
 
-    UserAuthenticationProvider(UserRepository userRepository) {
+    private UserHolder holder
+
+    UserAuthenticationProvider(final UserRepository userRepository, final UserHolder holder) {
         this.userRepository = userRepository
+        this.holder = holder
     }
 
     @Override
@@ -28,6 +31,7 @@ class UserAuthenticationProvider implements AuthenticationProvider {
             AbstractAuthenticationToken abstractAuthenticationToken = getAbstractAuthenticationToken(
                     user)
             abstractAuthenticationToken.setAuthenticated(true)
+            holder.setAuthentication(abstractAuthenticationToken)
             return abstractAuthenticationToken
         }
         throw new UsernameNotFoundException(username)
@@ -49,6 +53,6 @@ class UserAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     boolean supports(Class<?> authentication) {
-        return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication)
+        UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication)
     }
 }
