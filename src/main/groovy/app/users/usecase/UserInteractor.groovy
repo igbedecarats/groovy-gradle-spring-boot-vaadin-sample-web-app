@@ -1,4 +1,4 @@
-package app.users.usecase.usecase
+package app.users.usecase
 
 import app.users.domain.User
 import app.users.domain.UserRepository

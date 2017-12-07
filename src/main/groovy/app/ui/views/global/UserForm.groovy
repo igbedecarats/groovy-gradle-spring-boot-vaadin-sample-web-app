@@ -1,11 +1,10 @@
 package app.ui.views.global
 
 import app.locations.domain.Location
-import app.locations.domain.LocationArea
 import app.locations.usecase.LocationInteractor
 import app.users.domain.User
 import app.users.domain.UserRole
-import app.users.usecase.usecase.UserInteractor
+import app.users.usecase.UserInteractor
 import com.vaadin.data.Binder
 import com.vaadin.event.ShortcutAction
 import com.vaadin.icons.VaadinIcons

@@ -5,7 +5,7 @@ import app.locations.usecase.LocationInteractor
 import app.ui.Sections
 import app.ui.views.global.UserForm
 import app.users.domain.User
-import app.users.usecase.usecase.UserInteractor
+import app.users.usecase.UserInteractor
 import com.vaadin.navigator.View
 import com.vaadin.navigator.ViewChangeListener
 import com.vaadin.server.FontAwesome
