@@ -60,7 +60,7 @@ class SignUpScreen extends CustomComponent {
         signUpButton = new Button("Registrarse")
 
         existingLocations = this.locationInteractor.findAll().stream()
-                .map{ location -> ((LocationArea)location)["name"] }.collect(
+                .map{ location -> ((Location)location)["name"] }.collect(
                 Collectors.toList())
         locations.setItems(existingLocations)
         locations.setSelectedItem(existingLocations.stream().findFirst().get())
