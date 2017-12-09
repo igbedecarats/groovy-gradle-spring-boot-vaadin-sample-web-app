@@ -14,6 +14,6 @@ class LocationConfig {
 
     @Bean
     LocationInteractor locationInteractor() {
-        return new LocationInteractor(locationRepository)
+        new LocationInteractor(locationRepository)
     }
 }

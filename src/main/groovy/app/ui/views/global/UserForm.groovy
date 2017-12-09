@@ -110,7 +110,7 @@ class UserForm extends FormLayout {
     }
 
     private boolean isLoggedUserNotSelectedUser(User user) {
-        return loggedUser.getId() != user.getId()
+        loggedUser.getId() != user.getId()
     }
 
     private void save() {

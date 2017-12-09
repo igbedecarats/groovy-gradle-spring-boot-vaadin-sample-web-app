@@ -11,7 +11,7 @@ class UserHolder {
     Authentication authentication
 
     User getUser() {
-        return (User) authentication.getPrincipal()
+        (User) authentication.getPrincipal()
     }
 
     void setAuthentication(AbstractAuthenticationToken authentication) {
