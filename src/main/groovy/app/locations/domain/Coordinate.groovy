@@ -19,4 +19,11 @@ class Coordinate {
     double getLongitude() {
         return longitude
     }
+
+    Coordinate(final double latitude, final double longitude) {
+        this.latitude = latitude
+        this.longitude = longitude
+    }
+
+    Coordinate() {}
 }

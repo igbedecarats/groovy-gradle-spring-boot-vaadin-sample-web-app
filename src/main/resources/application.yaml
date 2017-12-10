@@ -1,31 +1,23 @@
-# production defaults
-# see the `dev` profile below for development
-
-app:
-  vaadin:
-    productionMode: "true" # must be string!
-
-server:
-  address: 127.0.0.1
-
-vaadin:
-  servlet:
-    # urlMapping: /app/*
-    productionMode: "${app.vaadin.productionMode}"
+logging:
+  file: logs/serviceya.log
+  level:
+    org.springframework: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 spring:
-  groovy:
-    template:
-      check-template-location: false
-  main:
-    banner-mode: "off"
 
----
+  h2:
+    console:
+      enabled: true
 
-spring:
-    profiles: dev
+  datasource:
+    initialize: true
 
-app:
-  vaadin:
-    productionMode: "false" # must be string
+  jpa:
+    show-sql: true
 
+google:
+  maps:
+    key: AIzaSyBNJvYQ-t6dymsHr6bI6UtSH9MlB5ujlTk

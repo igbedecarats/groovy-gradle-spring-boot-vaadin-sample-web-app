@@ -2,8 +2,9 @@ package app.services.domain
 
 import app.locations.domain.Location
 import app.locations.domain.LocationArea
+import org.springframework.data.repository.CrudRepository
 
-interface ServiceRepository {
+interface ServiceRepository extends CrudRepository<Service, Long> {
 
     List<Service> findByProviderIdAndNameIgnoreCaseContaining(final long id, final String name)
 
