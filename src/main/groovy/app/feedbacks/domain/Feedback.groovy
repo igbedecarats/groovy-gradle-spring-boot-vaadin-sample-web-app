@@ -50,6 +50,8 @@ class Feedback {
         this.comment = comment
     }
 
+    Feedback() { }
+
     long getId() {
         id
     }

@@ -11,6 +11,7 @@ import com.vaadin.icons.VaadinIcons
 import com.vaadin.ui.*
 import com.vaadin.ui.themes.ValoTheme
 import org.vaadin.viritin.button.ConfirmButton
+import org.vaadin.viritin.button.MButton
 
 import java.util.stream.Collectors
 
@@ -34,9 +35,10 @@ class UserForm extends FormLayout {
     private Button save = new Button("Guardar")
     private Button delete = new ConfirmButton(VaadinIcons.TRASH,
             "¿Estas seguro que queres borrar este usuario?",
-            new Button.ClickListener() {
+            new MButton.MClickListener() {
+
                 @Override
-                void buttonClick(final Button.ClickEvent event) {
+                void onClick() {
                     delete()
                 }
             })
