@@ -79,6 +79,7 @@ dependencies {
     compile('com.vaadin:vaadin-client-compiled:8.0.5')
     compile('com.vaadin:vaadin-icons:3.0.1')
     compile("org.vaadin:viritin:${viritinVersion}") { exclude group: 'com.vaadin' }
+    compile("org.glassfish.web:javax.el:2.2.6")
     runtime('com.h2database:h2')
     testCompile "org.spockframework:spock-core:${spockVersion}"
 }
