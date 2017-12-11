@@ -78,7 +78,7 @@ abstract class AbstractServiceComponent extends VerticalLayout {
         providerContainer = new HorizontalLayout()
         provider
                 .setValue(service.getProvider().getFirstName() + " " + service.getProvider().getLastName())
-        provider.setVisible(!loggedUser.equals(service.getProvider()))
+        provider.setVisible(loggedUser != service.getProvider())
         provider.setStyleName(ValoTheme.LABEL_H4)
         rating.setValue(Float.toString(serviceInteractor.calculateRate(service).getRating()))
         providerContainer.addComponents(provider, rating)

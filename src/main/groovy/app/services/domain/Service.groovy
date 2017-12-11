@@ -3,6 +3,7 @@ package app.services.domain
 import app.locations.domain.Location
 import app.users.domain.User
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import groovy.transform.EqualsAndHashCode
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.Validate
 import org.apache.commons.lang3.builder.EqualsBuilder
@@ -20,6 +21,7 @@ import java.util.stream.Collectors
 @Entity
 @Table(name = "service")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@EqualsAndHashCode(includes='name,description,provider,category,subCategory')
 class Service {
 
     @Id

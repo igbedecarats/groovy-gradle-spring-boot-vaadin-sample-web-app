@@ -21,7 +21,7 @@ import org.vaadin.spring.events.annotation.EventBusListenerMethod
 import org.vaadin.spring.sidebar.annotation.FontAwesomeIcon
 import org.vaadin.spring.sidebar.annotation.SideBarItem
 
-@Secured("ROLE_PROVIDER")
+//@Secured("ROLE_PROVIDER")
 @SpringView(name = "myservices")
 @SideBarItem(sectionId = Sections.SERVICES, caption = "Mis Servicios", order = 0)
 @FontAwesomeIcon(FontAwesome.CUBES)

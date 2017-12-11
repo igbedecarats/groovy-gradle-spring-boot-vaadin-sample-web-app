@@ -1,6 +1,7 @@
 package app.services.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import groovy.transform.EqualsAndHashCode
 import org.apache.commons.lang3.Validate
 import org.apache.commons.lang3.builder.EqualsBuilder
 import org.apache.commons.lang3.builder.HashCodeBuilder
@@ -11,6 +12,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "service_category")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@EqualsAndHashCode(includes='name')
 class ServiceCategory {
 
     @Id
@@ -44,31 +46,6 @@ class ServiceCategory {
 
     Set<ServiceSubCategory> getSubCategories() {
         subCategories
-    }
-
-    @Override
-    boolean equals(final Object o) {
-        if (this == o) {
-            true
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            false
-        }
-
-        ServiceCategory category = (ServiceCategory) o
-
-        new EqualsBuilder().append(name, category.name).isEquals()
-    }
-
-    @Override
-    int hashCode() {
-        new HashCodeBuilder(17, 37).append(name).toHashCode()
-    }
-
-    @Override
-    String toString() {
-        new ToStringBuilder(this).append("id", id).append("name", name).toString()
     }
 
 }
