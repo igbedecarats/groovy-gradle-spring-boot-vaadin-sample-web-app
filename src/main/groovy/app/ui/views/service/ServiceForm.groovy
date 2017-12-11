@@ -11,6 +11,8 @@ import app.ui.events.ServiceCreatedEvent
 import app.users.domain.User
 import com.vaadin.data.Binder
 import com.vaadin.data.HasValue
+import com.vaadin.spring.annotation.SpringComponent
+import com.vaadin.spring.annotation.UIScope
 import com.vaadin.ui.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.vaadin.spring.events.EventBus
@@ -22,6 +24,8 @@ import org.vaadin.viritin.layouts.MVerticalLayout
 
 import java.util.stream.Collectors
 
+@UIScope
+@SpringComponent
 class ServiceForm extends AbstractForm<Service> {
 
     private User loggedUser

@@ -1,3 +1,28 @@
+-- Service Categories
+INSERT INTO service_category (id, name) VALUES (1, 'Oficios');
+INSERT INTO service_category (id, name) VALUES (2, 'Ropa y Moda');
+INSERT INTO service_category (id, name) VALUES (3, 'Servicio Técnico');
+INSERT INTO service_category (id, name) VALUES (4, 'Limpieza');
+INSERT INTO service_category (id, name) VALUES (5, 'Cuidado de Personas');
+
+-- Service SubCategories
+INSERT INTO service_sub_category (id, name, category_id) VALUES (1, 'Albañilería', 1);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (2, 'Carpintería', 1);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (3, 'Cerrajería', 1);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (4, 'Herrería', 1);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (5, 'Pintor', 1);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (6, 'Plomero', 1);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (7, 'Gasista', 1);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (8, 'Arreglos en General', 2);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (9, 'Diseño', 2);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (10, 'Lavandería y Tintorería', 2);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (11, 'Hogar y Oficina', 3);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (12, 'Tecnología', 3);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (13, 'Hogares', 4);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (14, 'Oficinas', 4);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (15, 'Niños', 5);
+INSERT INTO service_sub_category (id, name, category_id) VALUES (16, 'Ancianos', 5);
+
 -- Locations
 INSERT INTO location
 (id, AREA, LATITUDE, LONGITUDE, NAME)
@@ -78,3 +103,21 @@ VALUES (5, 'hulk', 'hulk', 'bruce.bannerk@avengers.com', 'Bruce', 'Banner', 16, 
 
 INSERT INTO user (id, username, password, email, first_name, last_name, preferred_location_id, role)
 VALUES (6, 'archers', 'archers', 'archer.sterling@isis.com', 'Archer', 'Stirling', 16, 'PROVIDER');
+
+-- Services
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Limpieza de Hogares', 'Servicio Integral de Limpieza', 4, 13, 2, 3, '09:00', '12:00', 1, 5);
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Limpieza de Oficinas', 'Servicio Integral de Limpieza', 4, 14, 2, 1, '13:00', '20:00', 1, 5);
+
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Reparación de Electrodomésticos', 'Arreglos de todo tipo', 3, 12, 4, 4, '09:00', '19:00', 1, 4);
+
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Trabajos de Construcción', 'Maestro Mayor de Obras', 1, 1, 5, 15, '09:00', '16:00', 1, 4);
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Pintura de Hogares', 'Con mas de 20 años de experiencia', 1, 5, 5, 16, '09:00', '17:00', 5, 6);
+
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Cerrajero a Domicilio', 'Servicio las 24 hrs', 1, 3, 6, 2, '00:00', '23:59', 1, 7);
+

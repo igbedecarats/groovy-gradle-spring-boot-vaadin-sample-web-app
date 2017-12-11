@@ -5,6 +5,8 @@ import app.feedbacks.domain.Feedback
 import app.feedbacks.usecase.FeedbackInteractor
 import app.ui.events.FeedbackSubmittedEvent
 import app.users.domain.User
+import com.vaadin.spring.annotation.SpringComponent
+import com.vaadin.spring.annotation.UIScope
 import com.vaadin.ui.Component
 import com.vaadin.ui.NativeSelect
 import com.vaadin.ui.Notification
@@ -18,6 +20,8 @@ import org.vaadin.viritin.form.AbstractForm.ResetHandler
 import org.vaadin.viritin.layouts.MFormLayout
 import org.vaadin.viritin.layouts.MVerticalLayout
 
+@UIScope
+@SpringComponent
 class FeedbackForm extends AbstractForm<Feedback> {
 
     private Contract contract
