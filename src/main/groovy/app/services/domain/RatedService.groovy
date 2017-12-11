@@ -18,7 +18,7 @@ class RatedService extends Service {
         service
     }
 
-    def getRating = { ->
+    Float getRating() {
         rating
     }
 }

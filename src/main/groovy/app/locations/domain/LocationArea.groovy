@@ -10,6 +10,10 @@ enum LocationArea {
         this.value = value
     }
 
+    String getValue() {
+        value
+    }
+
     static LocationArea getByValue(final String theValue) {
         List<LocationArea> locationAreas = Arrays.asList(LocationArea.values())
         return locationAreas.stream()

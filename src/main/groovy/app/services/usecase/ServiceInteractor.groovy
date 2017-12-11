@@ -133,7 +133,7 @@ class ServiceInteractor {
 
     List<RatedService> calculateRates(List<Service> services) {
         List<RatedService> ratedServices = services.stream()
-                .map { service -> this.calculateRate((Service)service, feedbackRepository) }
+                .map { service -> this.calculateRate((Service)service) }
                 .collect(Collectors.toList())
         ratedServices.sort(Comparator.comparing {
             ((RatedService) it).rating
@@ -141,9 +141,9 @@ class ServiceInteractor {
         ratedServices
     }
 
-    RatedService calculateRate(Service service, FeedbackRepository feedbackRepository1) {
+    RatedService calculateRate(Service service) {
         User user = service.getProvider()
-        List<Feedback> feedbacks = feedbackRepository1
+        List<Feedback> feedbacks = feedbackRepository
                 .findByContractServiceIdAndRecipientId(service.getId(), user.getId())
         float rating = 0f
         for (Feedback feedback : feedbacks) {

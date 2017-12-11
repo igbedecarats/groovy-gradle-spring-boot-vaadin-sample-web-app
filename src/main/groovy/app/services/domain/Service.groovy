@@ -129,6 +129,46 @@ class Service {
         endDay
     }
 
+    void setName(final String name) {
+        this.name = name
+    }
+
+    void setDescription(final String description) {
+        this.description = description
+    }
+
+    void setCategory(final ServiceCategory category) {
+        this.category = category
+    }
+
+    void setSubCategory(final ServiceSubCategory subCategory) {
+        this.subCategory = subCategory
+    }
+
+    void setProvider(final User provider) {
+        this.provider = provider
+    }
+
+    void setLocation(final Location location) {
+        this.location = location
+    }
+
+    void setStartTime(final String startTime) {
+        this.startTime = startTime
+    }
+
+    void setEndTime(final String endTime) {
+        this.endTime = endTime
+    }
+
+    void setStartDay(final Integer startDay) {
+        this.startDay = startDay
+    }
+
+    void setEndDay(final Integer endDay) {
+        this.endDay = endDay
+    }
+
     void setTimesAndDays(String startTime, String endTime, Integer startDay,
                          Integer endDay) {
         if (StringUtils.isNotBlank(startTime) && StringUtils.isNotBlank(endTime) && startDay != null
