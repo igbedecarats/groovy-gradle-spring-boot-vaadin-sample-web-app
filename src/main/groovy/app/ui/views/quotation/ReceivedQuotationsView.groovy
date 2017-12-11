@@ -93,7 +93,13 @@ class ReceivedQuotationsView extends CustomComponent implements View {
                         quotation.getStatus().getValue()
                     }
                 }).setCaption("Estado")
-        grid.addColumn("Aceptar",
+        grid.addColumn(
+                new ValueProvider<Quotation, String>() {
+                    @Override
+                    String apply(final Quotation quotation) {
+                        "Aceptar"
+                    }
+                },
                 new ButtonRenderer(new ClickableRenderer.RendererClickListener() {
                     @Override
                     void click(final ClickableRenderer.RendererClickEvent clickEvent) {
@@ -101,7 +107,13 @@ class ReceivedQuotationsView extends CustomComponent implements View {
                         updateGrid()
                     }
                 }))
-        grid.addColumn("Rechazar",
+        grid.addColumn(
+                new ValueProvider<Quotation, String>() {
+                    @Override
+                    String apply(final Quotation quotation) {
+                        "Rechazar"
+                    }
+                },
                 new ButtonRenderer(new ClickableRenderer.RendererClickListener() {
                     @Override
                     void click(final ClickableRenderer.RendererClickEvent clickEvent) {
