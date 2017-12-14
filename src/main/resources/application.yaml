@@ -1,10 +1,10 @@
 logging:
   file: logs/serviceya.log
   level:
-    org.springframework: DEBUG
+    org.springframework: INFO
     org.hibernate.SQL: DEBUG
-    org.hibernate.type: TRACE
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: DEBUG
 
 spring:
 

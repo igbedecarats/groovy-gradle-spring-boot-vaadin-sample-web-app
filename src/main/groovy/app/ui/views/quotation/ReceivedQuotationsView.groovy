@@ -19,7 +19,7 @@ import org.springframework.security.access.annotation.Secured
 import org.vaadin.spring.sidebar.annotation.FontAwesomeIcon
 import org.vaadin.spring.sidebar.annotation.SideBarItem
 
-@Secured("ROLE_PROVIDER")
+//@Secured("ROLE_PROVIDER")
 @SpringView(name = "myquotations")
 @SideBarItem(sectionId = Sections.SERVICES, caption = "Pedidos Recibidos", order = 1)
 @FontAwesomeIcon(FontAwesome.COMMENTS_O)

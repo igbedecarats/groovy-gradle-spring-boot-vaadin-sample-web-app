@@ -18,10 +18,10 @@ import org.springframework.security.access.annotation.Secured
 import org.vaadin.spring.sidebar.annotation.FontAwesomeIcon
 import org.vaadin.spring.sidebar.annotation.SideBarItem
 
-@Secured("ROLE_ADMIN")
-@SpringView(name = "users")
-@SideBarItem(sectionId = Sections.ADMIN, caption = "Usuarios", order = 0)
-@FontAwesomeIcon(FontAwesome.USERS)
+//@Secured("ROLE_ADMIN")
+//@SpringView(name = "users")
+//@SideBarItem(sectionId = Sections.ADMIN, caption = "Usuarios", order = 0)
+//@FontAwesomeIcon(FontAwesome.USERS)
 class UserAdminView extends CustomComponent implements View {
 
     private UserInteractor userInteractor

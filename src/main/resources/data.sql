@@ -103,3 +103,21 @@ VALUES (5, 'hulk', 'hulk', 'bruce.bannerk@avengers.com', 'Bruce', 'Banner', 16, 
 
 INSERT INTO user (id, username, password, email, first_name, last_name, preferred_location_id, role)
 VALUES (6, 'archers', 'archers', 'archer.sterling@isis.com', 'Archer', 'Stirling', 16, 'PROVIDER');
+
+-- Services
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Limpieza de Hogares', 'Servicio Integral de Limpieza', 4, 13, 2, 3, '09:00', '12:00', 1, 5);
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Limpieza de Oficinas', 'Servicio Integral de Limpieza', 4, 14, 2, 1, '13:00', '20:00', 1, 5);
+
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Reparación de Electrodomésticos', 'Arreglos de todo tipo', 3, 12, 4, 4, '09:00', '19:00', 1, 4);
+
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Trabajos de Construcción', 'Maestro Mayor de Obras', 1, 1, 5, 15, '09:00', '16:00', 1, 4);
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Pintura de Hogares', 'Con mas de 20 años de experiencia', 1, 5, 5, 16, '09:00', '17:00', 5, 6);
+
+INSERT INTO service (name, description, category_id, sub_category_id, provider_id, location_id, start_time, end_time, start_day, end_day)
+VALUES ('Cerrajero a Domicilio', 'Servicio las 24 hrs', 1, 3, 6, 2, '00:00', '23:59', 1, 7);
+

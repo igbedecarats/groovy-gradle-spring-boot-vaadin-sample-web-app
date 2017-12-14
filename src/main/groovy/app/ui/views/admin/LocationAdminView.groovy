@@ -16,10 +16,10 @@ import org.springframework.security.access.annotation.Secured
 import org.vaadin.spring.sidebar.annotation.FontAwesomeIcon
 import org.vaadin.spring.sidebar.annotation.SideBarItem
 
-@Secured("ROLE_ADMIN")
-@SpringView(name = "locations")
-@SideBarItem(sectionId = Sections.ADMIN, caption = "Ubicaciones", order = 1)
-@FontAwesomeIcon(FontAwesome.MAP_MARKER)
+//@Secured("ROLE_ADMIN")
+//@SpringView(name = "locations")
+//@SideBarItem(sectionId = Sections.ADMIN, caption = "Ubicaciones", order = 1)
+//@FontAwesomeIcon(FontAwesome.MAP_MARKER)
 class LocationAdminView extends CustomComponent implements View {
 
     private LocationInteractor locationInteractor
