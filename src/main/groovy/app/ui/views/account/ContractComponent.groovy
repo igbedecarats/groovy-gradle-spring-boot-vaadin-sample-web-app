@@ -3,6 +3,7 @@ package app.ui.views.account
 import app.contracts.domain.Contract
 import app.contracts.usecase.ContractInteractor
 import app.feedbacks.domain.Feedback
+import app.global.date.DateUtils
 import app.ui.events.ContractMarkedDoneEvent
 import app.ui.views.feedback.FeedbackComponent
 import app.ui.views.feedback.FeedbackForm
@@ -58,7 +59,7 @@ class ContractComponent extends CustomComponent {
         clientName.setValue(client.getFirstName() + " " + client.getLastName())
         clientName.setVisible(loggedUser != client)
         clientName.setCaption("Cliente")
-        scheduledTime.setValue(contract.getScheduledTime().toString())
+        scheduledTime.setValue(DateUtils.convertToString(contract.getScheduledTime()))
         scheduledTime.setCaption("Tiempo Acordado")
         status.setValue(contract.getStatus().getValue())
         status.setCaption("Estado")

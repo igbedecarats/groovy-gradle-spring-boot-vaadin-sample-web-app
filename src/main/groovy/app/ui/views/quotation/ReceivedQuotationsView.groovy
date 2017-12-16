@@ -1,5 +1,6 @@
 package app.ui.views.quotation
 
+import app.global.date.DateUtils
 import app.global.security.UserHolder
 import app.quotations.domain.Quotation
 import app.quotations.quotation.QuotationInteractor
@@ -83,7 +84,7 @@ class ReceivedQuotationsView extends CustomComponent implements View {
                 new ValueProvider<Quotation, String>() {
                     @Override
                     String apply(final Quotation quotation) {
-                        quotation.getScheduledTime().toString()
+                        DateUtils.convertToString(quotation.getScheduledTime())
                     }
                 }).setCaption("Tiempo Agendado")
         grid.addColumn(

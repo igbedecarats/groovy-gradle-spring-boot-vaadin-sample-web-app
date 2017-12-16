@@ -1,6 +1,7 @@
 package app.ui.views.feedback
 
 import app.feedbacks.domain.Feedback
+import app.global.date.DateUtils
 import com.vaadin.ui.CustomComponent
 import com.vaadin.ui.HorizontalLayout
 import com.vaadin.ui.Label
@@ -25,7 +26,7 @@ class FeedbackComponent extends CustomComponent {
         clientName.setValue(
                 feedback.getRecipient().getFirstName() + " " + feedback.getRecipient().getLastName())
         clientName.setCaption("Para")
-        creationTime.setValue(feedback.getCreationTime().toString())
+        creationTime.setValue(DateUtils.convertToString(feedback.getCreationTime()))
         creationTime.setCaption("Enviado")
         comment.setValue(feedback.getComment())
         comment.setCaption("Commentario")
