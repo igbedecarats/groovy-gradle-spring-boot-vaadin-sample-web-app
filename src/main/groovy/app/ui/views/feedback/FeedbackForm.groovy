@@ -64,6 +64,9 @@ class FeedbackForm extends AbstractForm<Feedback> {
             // send the event for other parts of the application
             eventBus.publish(this, new FeedbackSubmittedEvent(feedback))
             Notification.show("Éxito!", Notification.Type.HUMANIZED_MESSAGE)
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Notification
+                    .show(illegalArgumentException.getMessage(), Notification.Type.ERROR_MESSAGE)
         } catch (Exception ignored) {
             Notification
                     .show("Unable to process request, please contact the system admin", Notification.Type.ERROR_MESSAGE)

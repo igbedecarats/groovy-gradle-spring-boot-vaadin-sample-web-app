@@ -2,6 +2,7 @@ package app.feedbacks.usecase
 
 import app.contracts.domain.Contract
 import app.contracts.domain.ContractRepository
+import app.contracts.domain.ContractStatus
 import app.feedbacks.domain.Feedback
 import app.feedbacks.domain.FeedbackRepository
 import app.users.domain.User
@@ -20,6 +21,14 @@ class FeedbackInteractor {
 
     Feedback submitByUser(User user, Contract contract, String comment, Integer rating) {
         User sender = user
+        User recipient = getRecipient(contract, user)
+        Feedback feedback = feedbackRepository.save(new Feedback(sender, recipient, contract, rating, comment))
+        contract.addFeedback(feedback)
+        contractRepository.save(contract)
+        feedback
+    }
+
+    private User getRecipient(Contract contract, User user) {
         User recipient
         if (contract.isClient(user)) {
             recipient = contract.getService().getProvider()
@@ -28,9 +37,6 @@ class FeedbackInteractor {
         } else {
             throw new IllegalArgumentException("The Users must belong to the Contract")
         }
-        Feedback feedback = feedbackRepository.save(new Feedback(sender, recipient, contract, rating, comment))
-        contract.addFeedback(feedback)
-        contractRepository.save(contract)
-        feedback
+        recipient
     }
 }

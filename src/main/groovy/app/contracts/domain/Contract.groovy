@@ -179,11 +179,11 @@ class Contract {
     }
 
     boolean isClient(final User user) {
-        user == contract.getClient()
+        user == getClient()
     }
 
     boolean isProvider(final User user) {
-        user == contract.getService().getProvider()
+        user == getService().getProvider()
     }
 
     void markDoneByUser(final User user) {
@@ -194,5 +194,9 @@ class Contract {
         } else {
             throw new IllegalArgumentException("User doesn't belong to contract")
         }
+    }
+
+    boolean alreadyEvaluatedByUser(final User user) {
+        feedbacks.stream().anyMatch{feedback -> ((Feedback)feedback).getSender() == user}
     }
 }

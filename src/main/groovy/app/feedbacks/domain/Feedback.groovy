@@ -1,6 +1,7 @@
 package app.feedbacks.domain
 
 import app.contracts.domain.Contract
+import app.contracts.domain.ContractStatus
 import app.users.domain.User
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
@@ -42,6 +43,15 @@ class Feedback {
     }
 
     Feedback(User sender, User recipient, Contract contract, int rating, String comment) {
+
+        if (contract.getStatus() != ContractStatus.COMPLETED) {
+            throw new IllegalArgumentException("El contrato debe estar completado para poder ser calificado")
+        }
+
+        if (contract.alreadyEvaluatedByUser(sender)) {
+            throw new IllegalArgumentException("Ya has calificado este contrato")
+        }
+
         this.sender = sender
         this.recipient = recipient
         this.contract = contract
