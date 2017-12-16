@@ -68,6 +68,10 @@ class QuotationForm extends AbstractForm<Quotation> {
             // send the event for other parts of the application
             eventBus.publish(this, new QuotationModifiedEvent(quotation))
             Notification.show("Éxito!", Notification.Type.HUMANIZED_MESSAGE)
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Notification
+                    .show("No se puede generar el pedido de cotización: " + illegalArgumentException.getMessage(),
+                    Notification.Type.ERROR_MESSAGE)
         } catch (Exception ignored) {
             Notification
                     .show("Unable to process request, please contact the system admin", Notification.Type.ERROR_MESSAGE)

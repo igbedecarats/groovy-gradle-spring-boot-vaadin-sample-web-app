@@ -3,17 +3,11 @@ package app.quotations.domain
 import app.services.domain.Service
 import app.users.domain.User
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import org.apache.commons.lang3.Validate
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
-import javax.persistence.Table
+import javax.persistence.*
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @Entity
 @Table(name = "quotation")
@@ -44,8 +38,9 @@ class Quotation {
     @Enumerated(EnumType.STRING)
     private QuotationStatus status
 
-    Quotation(String description, User client, Service service,
-                     LocalDateTime scheduledTime) {
+    Quotation(final String description, final User client, final Service service, final LocalDateTime scheduledTime) {
+        Validate.notBlank(description, "Por favor ingrese un comentario")
+        validateScheduledTime(scheduledTime, service)
         this.description = description
         this.client = client
         this.service = service
@@ -54,11 +49,29 @@ class Quotation {
         this.status = QuotationStatus.CREATED
     }
 
+    private void validateScheduledTime(LocalDateTime scheduledTime, Service service) {
+        if (LocalDateTime.now().compareTo(scheduledTime) > 0 ) {
+            throw new IllegalArgumentException("No se pueden crear pedidos de contratación con fecha en el pasado")
+        }
+        if (scheduledTime.getDayOfWeek().getValue() < service.getStartDay()
+                || scheduledTime.getDayOfWeek().getValue() > service.getEndDay()) {
+            throw new IllegalArgumentException("El día del pedido de contratación debe estar contenido en los días " +
+                    "que se presta el servicio")
+        }
+
+        LocalTime scheduledLocalTime = scheduledTime.toLocalTime()
+        if (service.getLocalStartTime().compareTo(scheduledLocalTime) > 0
+                || service.getLocalEndTime().compareTo(scheduledLocalTime) < 0) {
+            throw new IllegalArgumentException("La hora del día del pedido de contratación debe estar contenido en " +
+                    "el horario en el que se presta el servicio")
+        }
+    }
+
     boolean isCreated() {
         status.equals(QuotationStatus.CREATED)
     }
-    
-    Quotation() { }
+
+    Quotation() {}
 
     long getId() {
         id

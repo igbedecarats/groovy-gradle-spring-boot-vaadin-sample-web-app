@@ -16,17 +16,16 @@ class QuotationInteractor {
 
     private ContractInteractor contractInteractor
 
-    QuotationInteractor(
-            QuotationRepository quotationRepository,
-            ContractInteractor contractInteractor) {
+    QuotationInteractor(QuotationRepository quotationRepository, ContractInteractor contractInteractor) {
         this.quotationRepository = quotationRepository
         this.contractInteractor = contractInteractor
     }
 
-    Quotation create(String description, User client, Service service,
-                            LocalDateTime scheduledTime) {
-        quotationRepository
-                .save(new Quotation(description, client, service, scheduledTime))
+    Quotation create(String description, User client, Service service, LocalDateTime scheduledTime) {
+        if (contractInteractor.hasAvailableTimeForServiceOn(service, scheduledTime)) {
+            throw new IllegalArgumentException("Ya existe una reserva para ese momento seleccionado")
+        }
+        quotationRepository.save(new Quotation(description, client, service, scheduledTime))
     }
 
     List<Quotation> findByClient(User loggedUser) {
