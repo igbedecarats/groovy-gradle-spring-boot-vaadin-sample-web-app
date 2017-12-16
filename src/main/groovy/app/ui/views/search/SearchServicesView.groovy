@@ -69,28 +69,28 @@ class SearchServicesView extends CustomComponent implements View {
         HorizontalLayout simpleSearchLayout = new HorizontalLayout()
         searchTextField = new TextField()
         searchTextField.setPlaceholder("Buscar por Nombre")
-        searchTextField.addValueChangeListener {
-            new HasValue.ValueChangeListener() {
-                @Override
-                void valueChange(final HasValue.ValueChangeEvent event) {
-                    simpleSearch(searchTextField.getValue())
+        searchTextField.addValueChangeListener(
+                new HasValue.ValueChangeListener() {
+                    @Override
+                    void valueChange(final HasValue.ValueChangeEvent event) {
+                        simpleSearch(searchTextField.getValue())
+                    }
                 }
-            }
-        }
+        )
         searchTextField.setWidth("600px")
         searchTextField.setEnabled(true)
         nearBy = new CheckBox("Cerca tuyo")
         nearBy.setEnabled(true)
-        nearBy.addValueChangeListener {
-            new HasValue.ValueChangeListener() {
-                @Override
-                void valueChange(final HasValue.ValueChangeEvent event) {
-                    simpleSearch(
-                            StringUtils.isNotBlank(searchTextField.getValue()) ? searchTextField.getValue()
-                                    : StringUtils.EMPTY)
+        nearBy.addValueChangeListener(
+                new HasValue.ValueChangeListener() {
+                    @Override
+                    void valueChange(final HasValue.ValueChangeEvent event) {
+                        simpleSearch(
+                                StringUtils.isNotBlank(searchTextField.getValue()) ? searchTextField.getValue()
+                                        : StringUtils.EMPTY)
+                    }
                 }
-            }
-        }
+        )
         advanceSearch = new CheckBox("Búsqueda avanzada")
         simpleSearchLayout.addComponents(searchTextField, nearBy, advanceSearch)
         simpleSearchLayout.setSizeUndefined()
