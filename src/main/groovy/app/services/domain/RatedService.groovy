@@ -1,5 +1,8 @@
 package app.services.domain
 
+import groovy.transform.EqualsAndHashCode
+
+@EqualsAndHashCode(includes = 'service,rating')
 class RatedService extends Service {
 
     protected Service service

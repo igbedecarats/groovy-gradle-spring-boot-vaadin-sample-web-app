@@ -92,7 +92,6 @@ class LocationInteractor {
         Coordinate coordinateForLocation
         try {
             coordinateForLocation = findCoordinateForLocation(location.getName())
-
         } catch (Exception e) {
             coordinateForLocation = new Coordinate()
         }

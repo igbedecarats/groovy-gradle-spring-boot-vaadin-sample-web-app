@@ -13,7 +13,7 @@ class FeedbackInteractor {
     private ContractRepository contractRepository
 
     FeedbackInteractor(FeedbackRepository feedbackRepository,
-                              ContractRepository contractRepository) {
+                       ContractRepository contractRepository) {
         this.feedbackRepository = feedbackRepository
         this.contractRepository = contractRepository
     }
@@ -21,14 +21,14 @@ class FeedbackInteractor {
     Feedback submitByUser(User user, Contract contract, String comment, Integer rating) {
         User sender = user
         User recipient
-        if (user.equals(contract.getClient())) {
+        if (contract.isClient(user)) {
             recipient = contract.getService().getProvider()
-        } else if (user.equals(contract.getService().getProvider())) {
+        } else if (contract.isProvider(user)) {
             recipient = contract.getClient()
         } else {
             throw new IllegalArgumentException("The Users must belong to the Contract")
         }
-        Feedback feedback = feedbackRepository.save(new Feedback(sender,recipient, contract, rating, comment))
+        Feedback feedback = feedbackRepository.save(new Feedback(sender, recipient, contract, rating, comment))
         contract.addFeedback(feedback)
         contractRepository.save(contract)
         feedback

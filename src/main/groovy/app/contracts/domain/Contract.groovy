@@ -177,4 +177,22 @@ class Contract {
     boolean isCompleted() {
         ContractStatus.COMPLETED.equals(this.status)
     }
+
+    boolean isClient(final User user) {
+        user == contract.getClient()
+    }
+
+    boolean isProvider(final User user) {
+        user == contract.getService().getProvider()
+    }
+
+    void markDoneByUser(final User user) {
+        if (isClient(user)) {
+            this.clientApproved()
+        } else if (isProvider(user)) {
+            this.providerApproved()
+        } else {
+            throw new IllegalArgumentException("User doesn't belong to contract")
+        }
+    }
 }

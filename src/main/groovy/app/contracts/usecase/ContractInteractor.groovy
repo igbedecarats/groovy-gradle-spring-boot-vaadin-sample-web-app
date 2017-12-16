@@ -21,13 +21,7 @@ class ContractInteractor {
     }
 
     void markAsDoneByUser(final Contract contract, final User user) {
-        if (user == contract.getClient()) {
-            contract.clientApproved()
-        } else if (user.equals(contract.getService().getProvider())) {
-            contract.providerApproved()
-        } else {
-            throw new IllegalArgumentException("User doesn't belong to contract")
-        }
+        contract.markDoneByUser(user)
         save(contract)
     }
 }

@@ -68,6 +68,7 @@ class ServiceInteractor {
         Service service = new Service(request.getName(), request.getDescription(), provider, location,
                 category, subCategory, request.getStartTime(), request.getEndTime(),
                 request.getStartDay(), request.getEndDay())
+
         serviceRepository.save(service)
     }
 

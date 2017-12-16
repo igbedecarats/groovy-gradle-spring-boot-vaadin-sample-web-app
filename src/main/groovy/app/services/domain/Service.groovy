@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import groovy.transform.EqualsAndHashCode
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.Validate
-import org.apache.commons.lang3.builder.EqualsBuilder
-import org.apache.commons.lang3.builder.HashCodeBuilder
-import org.apache.commons.lang3.builder.ToStringBuilder
 
 import javax.persistence.*
 import java.time.DateTimeException
@@ -21,7 +18,7 @@ import java.util.stream.Collectors
 @Entity
 @Table(name = "service")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@EqualsAndHashCode(includes='name,description,provider,category,subCategory')
+@EqualsAndHashCode(includes = 'name,description,provider,category,subCategory')
 class Service {
 
     @Id
@@ -253,35 +250,5 @@ class Service {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Invalid Time of the Day: " + e.getParsedString(), e)
         }
-    }
-
-    @Override
-    boolean equals(final Object o) {
-        if (this == o) {
-            true
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            false
-        }
-
-        Service service = (Service) o
-
-        new EqualsBuilder().append(id, service.id).append(provider, service.provider)
-                .append(name, service.name).append(description, service.description)
-                .append(category, service.category).isEquals()
-    }
-
-    @Override
-    int hashCode() {
-        new HashCodeBuilder(17, 37).append(id).append(provider).append(name).append(description)
-                .append(category).toHashCode()
-    }
-
-    @Override
-    String toString() {
-        new ToStringBuilder(this).append("id", id).append("provider", provider)
-                .append("name", name).append("description", description).append("category", category)
-                .toString()
     }
 }
