@@ -3,6 +3,8 @@ package app.ui.screens
 import app.locations.domain.Location
 import app.locations.domain.LocationArea
 import app.locations.usecase.LocationInteractor
+import app.ui.events.GoToLogin
+import app.ui.events.GoToSignUp
 import app.users.domain.User
 import app.users.domain.UserRole
 import app.users.usecase.UserInteractor
@@ -37,6 +39,7 @@ class SignUpScreen extends CustomComponent {
     private CheckBox isProvider
     private List<String> existingLocations
     private NativeSelect<String> locations
+    private Button goToLoginButton
     private Button signUpButton
 
     @Autowired
@@ -69,8 +72,20 @@ class SignUpScreen extends CustomComponent {
         FormLayout loginForm = new FormLayout()
         loginForm.setSizeUndefined()
 
+        HorizontalLayout buttonsLayout = new HorizontalLayout()
+
         loginForm.addComponents(username, firstName, lastName, email, password, isProvider, locations,
-                signUpButton)
+                buttonsLayout)
+
+        goToLoginButton = new Button("Volver")
+        goToLoginButton.addStyleName(ValoTheme.BUTTON_LINK)
+        goToLoginButton.setDisableOnClick(true)
+        goToLoginButton.addClickListener(new Button.ClickListener() {
+            @Override
+            void buttonClick(final Button.ClickEvent event) {
+                goBack()
+            }
+        })
         signUpButton.addStyleName(ValoTheme.BUTTON_PRIMARY)
         signUpButton.setDisableOnClick(true)
         signUpButton.setClickShortcut(ShortcutAction.KeyCode.ENTER)
@@ -80,6 +95,7 @@ class SignUpScreen extends CustomComponent {
                 signUp()
             }
         })
+        buttonsLayout.addComponentsAndExpand(goToLoginButton, signUpButton)
 
         VerticalLayout loginLayout = new VerticalLayout()
         loginLayout.setSizeUndefined()
@@ -91,6 +107,10 @@ class SignUpScreen extends CustomComponent {
         rootLayout.setComponentAlignment(loginLayout, Alignment.MIDDLE_CENTER)
         setCompositionRoot(rootLayout)
         setSizeFull()
+    }
+
+    private void goBack() {
+        eventBus.publish(this, new GoToLogin(getUI()))
     }
 
     private void signUp() {

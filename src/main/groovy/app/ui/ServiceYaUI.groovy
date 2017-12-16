@@ -1,5 +1,6 @@
 package app.ui
 
+import app.ui.events.GoToLogin
 import app.ui.events.GoToSignUp
 import app.ui.screens.LoginScreen
 import app.ui.screens.MainScreen
@@ -86,7 +87,7 @@ class ServiceYaUI extends UI {
     @EventBusListenerMethod
     void onLogin(SuccessfulLoginEvent loginEvent) {
         if (loginEvent.getSource().equals(this)) {
-            access({ -> showMainScreen()} )
+            access({ -> showMainScreen() })
         } else {
             // We cannot inject the Main Screen if the event was fired from another UI, since that UI's scope would be active
             // and the main screen for that UI would be injected. Instead, we just reload the page and let the init(...) method
@@ -98,7 +99,19 @@ class ServiceYaUI extends UI {
     @EventBusListenerMethod
     void onGoToSignUp(GoToSignUp goToSignUpEvent) {
         if (goToSignUpEvent.getSource().equals(this)) {
-            access( { -> showSignUpScreen()})
+            access({ -> showSignUpScreen() })
+        } else {
+            // We cannot inject the Main Screen if the event was fired from another UI, since that UI's scope would be active
+            // and the main screen for that UI would be injected. Instead, we just reload the page and let the init(...) method
+            // do the work for us.
+            getPage().reload()
+        }
+    }
+
+    @EventBusListenerMethod
+    void onGoToLogin(GoToLogin goToLoginEvent) {
+        if (goToLoginEvent.getSource().equals(this)) {
+            access({ -> showLoginScreen(false) })
         } else {
             // We cannot inject the Main Screen if the event was fired from another UI, since that UI's scope would be active
             // and the main screen for that UI would be injected. Instead, we just reload the page and let the init(...) method
