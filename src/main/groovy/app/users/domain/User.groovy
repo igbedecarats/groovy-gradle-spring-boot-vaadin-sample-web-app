@@ -4,16 +4,13 @@ import app.locations.domain.Location
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import groovy.transform.EqualsAndHashCode
 import org.apache.commons.lang3.Validate
-import org.apache.commons.lang3.builder.EqualsBuilder
-import org.apache.commons.lang3.builder.HashCodeBuilder
-import org.apache.commons.lang3.builder.ToStringBuilder
 
 import javax.persistence.*
 
 @Entity
 @Table(name = "user")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@EqualsAndHashCode(includes='username,email,firstName,lastName')
+@EqualsAndHashCode(includes = 'username,email,firstName,lastName')
 class User {
 
     @Id
@@ -45,10 +42,8 @@ class User {
 
     User() {}
 
-    User(
-            final String username,
-            final String password,
-            final String firstName, final String lastName, final String email, final UserRole role) {
+    User(final String username, final String password, final String firstName, final String lastName,
+         final String email, final UserRole role) {
         this.username = username
         this.password = password
         this.firstName = firstName

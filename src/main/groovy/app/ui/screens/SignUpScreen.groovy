@@ -1,10 +1,8 @@
 package app.ui.screens
 
 import app.locations.domain.Location
-import app.locations.domain.LocationArea
 import app.locations.usecase.LocationInteractor
 import app.ui.events.GoToLogin
-import app.ui.events.GoToSignUp
 import app.users.domain.User
 import app.users.domain.UserRole
 import app.users.usecase.UserInteractor
@@ -59,11 +57,12 @@ class SignUpScreen extends CustomComponent {
         email = new TextField("Email")
         password = new PasswordField("Password")
         isProvider = new CheckBox("Vas a publicar Servicios?")
+        isProvider.setVisible(false);
         locations = new NativeSelect<>("Ubicacion")
         signUpButton = new Button("Registrarse")
 
         existingLocations = this.locationInteractor.findAll().stream()
-                .map{ location -> ((Location)location)["name"] }.collect(
+                .map { location -> ((Location) location)["name"] }.collect(
                 Collectors.toList())
         locations.setItems(existingLocations)
         locations.setSelectedItem(existingLocations.stream().findFirst().get())
@@ -122,15 +121,9 @@ class SignUpScreen extends CustomComponent {
                     .orElseThrow { -> new IllegalArgumentException("Please choose a locations") }
             Location location = locationInteractor.findByName(locationName)
 
-            UserRole role
-            if (isProvider.getValue()) {
-                role = UserRole.PROVIDER
-            } else {
-                role = UserRole.CLIENT
-            }
-
-            User user = new User(username.getValue(), passwordValue, email.getValue(),
-                    firstName.getValue(), lastName.getValue(), role)
+            UserRole role = getUserRole()
+            User user =
+                    new User(username.getValue(), passwordValue, firstName.getValue(), lastName.getValue(), email.getValue(), role)
             user.setLocation(location)
             user = userInteractor.save(user)
 
@@ -143,6 +136,20 @@ class SignUpScreen extends CustomComponent {
                     .show(ex.getMessage(), Notification.Type.ERROR_MESSAGE)
             LoggerFactory.getLogger(getClass()).error(ex.getMessage(), ex)
         }
+    }
+
+    private UserRole getUserRole() {
+        UserRole role
+        if (isProvider.isVisible()) {
+            if (isProvider.getValue()) {
+                role = UserRole.PROVIDER
+            } else {
+                role = UserRole.CLIENT
+            }
+        } else {
+            role = UserRole.PROVIDER
+        }
+        role
     }
 
 }
