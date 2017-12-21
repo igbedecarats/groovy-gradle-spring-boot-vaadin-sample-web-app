@@ -1,7 +1,7 @@
 package app.services.usecase
 
 import app.feedbacks.domain.Feedback
-import app.feedbacks.domain.FeedbackRepository
+import app.feedbacks.usecase.FeedbackInteractor
 import app.locations.domain.Location
 import app.locations.domain.LocationArea
 import app.locations.usecase.LocationInteractor
@@ -26,20 +26,20 @@ class ServiceInteractor {
 
     private LocationInteractor locationInteractor
 
-    private FeedbackRepository feedbackRepository
+    private FeedbackInteractor feedbackInteractor
 
-    ServiceInteractor(ServiceRepository serviceRepository,
-                      ServiceCategoryRepository serviceCategoryRepository,
-                      ServiceSubCategoryRepository serviceSubCategoryRepository,
-                      UserRepository userRepository,
-                      LocationInteractor locationInteractor,
-                      FeedbackRepository feedbackRepository) {
+    ServiceInteractor(
+            final ServiceRepository serviceRepository,
+            final ServiceCategoryRepository serviceCategoryRepository,
+            final ServiceSubCategoryRepository serviceSubCategoryRepository,
+            final UserRepository userRepository,
+            final LocationInteractor locationInteractor, final FeedbackInteractor feedbackInteractor) {
         this.serviceRepository = serviceRepository
         this.serviceCategoryRepository = serviceCategoryRepository
         this.serviceSubCategoryRepository = serviceSubCategoryRepository
         this.userRepository = userRepository
         this.locationInteractor = locationInteractor
-        this.feedbackRepository = feedbackRepository
+        this.feedbackInteractor = feedbackInteractor
     }
 
     Service find(final long serviceId) {
@@ -134,7 +134,7 @@ class ServiceInteractor {
 
     List<RatedService> calculateRates(List<Service> services) {
         List<RatedService> ratedServices = services.stream()
-                .map { service -> this.calculateRate((Service)service) }
+                .map { service -> this.calculateRate((Service) service) }
                 .collect(Collectors.toList())
         ratedServices.sort(Comparator.comparing {
             ((RatedService) it).rating
@@ -143,16 +143,9 @@ class ServiceInteractor {
     }
 
     RatedService calculateRate(Service service) {
-        User user = service.getProvider()
-        List<Feedback> feedbacks = feedbackRepository
-                .findByContractServiceIdAndRecipientId(service.getId(), user.getId())
-        float rating = 0f
-        for (Feedback feedback : feedbacks) {
-            rating += feedback.getRating()
-        }
-        if (feedbacks.size() > 0) {
-            rating = (float) ((float) rating / (float) feedbacks.size())
-        }
+        User provider = service.getProvider()
+        List<Feedback> feedbacks = feedbackInteractor.getFeedbacksForServiceAndRecipient(service, provider)
+        float rating = feedbackInteractor.calculateRatingFrom(feedbacks)
         new RatedService(service, rating)
     }
 

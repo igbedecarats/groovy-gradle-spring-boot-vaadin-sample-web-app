@@ -1,6 +1,7 @@
 package app.users
 
 import app.feedbacks.domain.FeedbackRepository
+import app.feedbacks.usecase.FeedbackInteractor
 import app.users.domain.UserRepository
 import app.users.usecase.UserInteractor
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,11 +15,11 @@ class UserConfig {
     private UserRepository userRepository
 
     @Autowired
-    private FeedbackRepository feedbackRepository
+    private FeedbackInteractor feedbackInteractor
 
     @Bean
     UserInteractor userInteractor() {
-        return new UserInteractor(userRepository, feedbackRepository)
+        return new UserInteractor(userRepository, feedbackInteractor)
     }
 
 }

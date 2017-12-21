@@ -2,10 +2,12 @@ package app.feedbacks.usecase
 
 import app.contracts.domain.Contract
 import app.contracts.domain.ContractRepository
-import app.contracts.domain.ContractStatus
 import app.feedbacks.domain.Feedback
 import app.feedbacks.domain.FeedbackRepository
+import app.services.domain.Service
 import app.users.domain.User
+import org.jsoup.helper.Validate
+import org.springframework.util.CollectionUtils
 
 class FeedbackInteractor {
 
@@ -38,5 +40,26 @@ class FeedbackInteractor {
             throw new IllegalArgumentException("The Users must belong to the Contract")
         }
         recipient
+    }
+
+    float calculateRatingFrom(final List<Feedback> feedbacks) {
+        Validate.notNull(feedbacks, "The Feedbacks cannot be null")
+        float rating = 0f
+        feedbacks.forEach { feedback -> rating += ((Feedback) feedback).getRating() }
+        if (!CollectionUtils.isEmpty(feedbacks)) {
+            rating = ((float) rating / (float) feedbacks.size()) as float
+        }
+        rating
+    }
+
+    List<Feedback> getFeedbacksCreatedByClient(final User user) {
+        Validate.notNull(user, "The User cannot be null")
+        feedbackRepository.findByRecipientId(user.getId())
+    }
+
+    List<Feedback> getFeedbacksForServiceAndRecipient(final Service service, final User user) {
+        Validate.notNull(service, "The Service cannot be null")
+        Validate.notNull(user, "The User cannot be null")
+        feedbackRepository.findByContractServiceIdAndRecipientId(service.getId(), user.getId())
     }
 }

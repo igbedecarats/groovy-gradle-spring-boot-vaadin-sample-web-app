@@ -1,21 +1,22 @@
 package app.users.usecase
 
 import app.feedbacks.domain.Feedback
-import app.feedbacks.domain.FeedbackRepository
+import app.feedbacks.usecase.FeedbackInteractor
 import app.users.domain.RatedUser
 import app.users.domain.User
 import app.users.domain.UserRepository
+import org.jsoup.helper.Validate
 
 class UserInteractor {
 
     private UserRepository userRepository
 
-    private FeedbackRepository feedbackRepository
+    private FeedbackInteractor feedbackInteractor
 
-    UserInteractor(UserRepository userRepository,
-                   FeedbackRepository feedbackRepository) {
+    UserInteractor(final UserRepository userRepository,
+                   final FeedbackInteractor feedbackInteractor) {
         this.userRepository = userRepository
-        this.feedbackRepository = feedbackRepository
+        this.feedbackInteractor = feedbackInteractor
     }
 
     List<User> findAll() {
@@ -31,14 +32,9 @@ class UserInteractor {
     }
 
     RatedUser calculateUserRating(final User user) {
-        List<Feedback> feedbacks = feedbackRepository.findByRecipientId(user.getId())
-        float rating = 0f
-        for (Feedback feedback : feedbacks) {
-            rating += feedback.getRating()
-        }
-        if (feedbacks.size() > 0) {
-            rating = ((float) rating / (float) feedbacks.size()) as float
-        }
+        Validate.notNull(user, "The User cannot be null")
+        List<Feedback> feedbacks = feedbackInteractor.getFeedbacksCreatedByClient(user)
+        float rating = feedbackInteractor.calculateRatingFrom(feedbacks)
         new RatedUser(user, rating)
     }
 }

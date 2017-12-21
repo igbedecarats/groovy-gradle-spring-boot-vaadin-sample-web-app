@@ -1,6 +1,6 @@
 package app.services
 
-import app.feedbacks.domain.FeedbackRepository
+import app.feedbacks.usecase.FeedbackInteractor
 import app.locations.usecase.LocationInteractor
 import app.services.domain.ServiceCategoryRepository
 import app.services.domain.ServiceRepository
@@ -30,11 +30,11 @@ class ServicesConfig {
     private LocationInteractor locationInteractor
 
     @Autowired
-    private FeedbackRepository feedbackRepository
+    private FeedbackInteractor feedbackInteractor
 
     @Bean
     ServiceInteractor serviceInteractor() {
         new ServiceInteractor(serviceRepository, serviceCategoryRepository,
-                serviceSubCategoryRepository, userRepository, locationInteractor, feedbackRepository)
+                serviceSubCategoryRepository, userRepository, locationInteractor, feedbackInteractor)
     }
 }
