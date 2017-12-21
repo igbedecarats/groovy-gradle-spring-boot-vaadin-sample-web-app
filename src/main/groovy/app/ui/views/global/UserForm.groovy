@@ -101,10 +101,11 @@ class UserForm extends FormLayout {
         }
         if (user.getRole() == null) {
             role.setSelectedItem(UserRole.CLIENT)
+        } else if (!user.isAdmin()) {
+            role.setVisible(false)
         }
         // Show delete button for only users already in the database
-        delete
-                .setVisible(user.getId() != 0 && isLoggedUserNotSelectedUser(user) && loggedUser.isAdmin())
+        delete.setVisible(user.getId() != 0 && isLoggedUserNotSelectedUser(user) && loggedUser.isAdmin())
         setVisible(true)
         username.selectAll()
         username.setEnabled(isLoggedUserNotSelectedUser(user) && loggedUser.isAdmin())
